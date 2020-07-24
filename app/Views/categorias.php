@@ -63,7 +63,7 @@
                         <td>
                           <div class="row">
                             <a class="btn btn-sm btn-success btn-raised " href="/categorias/visualizar/<?=$value['id']?>" >Alterar</a>
-                            <a  onclick="excluirCategoria('<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                            <a  onclick="confirmDialog('Excluir categoria', 'Deseja excluir categoira mesmo?','/categorias/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                           </div>
                         </td>
                     </tr>
@@ -86,17 +86,5 @@
           window.location.href = "/categorias/excluir/" + id;
         }
     }
-    
-    let readURL = (input) =>{
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-              $('#blah').attr('src', e.target.result);
-              document.getElementById('imagem').innerHTML = input.files[0]['name'];
-          };
-          reader.readAsDataURL(input.files[0]);
-      }
-    }
-
 </script>
 

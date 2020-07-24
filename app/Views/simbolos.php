@@ -89,7 +89,7 @@
                         <td>
                           <div class="row">
                           <a class="btn btn-sm btn-success btn-raised " href="/simbolos/visualizar/<?=$value['id']?>" >Alterar</a>
-                          <a  onclick="excluirSimbolo('<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                          <a  onclick="confirmDialog('Excluir simbolo', 'Deseja excluir simbolo mesmo? todos os itens relacionado há ele será apagado.','/simbolos/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                         </div>
                         </td>
                     </tr>
@@ -105,24 +105,3 @@
 <?php include('components/script.inic.php');?>
 </body>
 </html>
-
-<script>
-  
-    let excluirSimbolo = (id)=>{
-        if(confirm("Deseja excluir simbolo?")){
-          window.location.href = "/simbolos/excluir/" + id;
-        }
-    }
-
-    let  readURL = (input) =>{
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-              $('#blah').attr('src', e.target.result);
-              document.getElementById('imagem').innerHTML = input.files[0]['name'];
-          };
-          reader.readAsDataURL(input.files[0]);
-      }
-    }
-</script>
-

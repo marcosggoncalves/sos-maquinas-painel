@@ -57,7 +57,7 @@
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <h4>Perfil: SOS Máquinas</h4>
+                <h4>SOS Máquinas</h4>
                 <p>
                   <?=$session->get('login')['user'][0]['email'];?>
                   <small>Usuário Logado</small>
@@ -81,16 +81,3 @@
     <!-- /.container-fluid -->
   </nav>
 </header>
-
-<script>
-    let resetDatabase = ()=>{
-      let senha = prompt("Digite a senha para limpar o banco dados?");
-      if(!senha){
-        alert("Senha não foi informada !");
-      }else{
-        if(confirm('Deseja prosseguir com o processo, esteja ciente que banco será apagada, dados serão perdidos.')){
-          window.location.href  = '/administradores/clear/' + senha;
-        }
-      }
-    }
-</script>

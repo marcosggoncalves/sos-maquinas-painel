@@ -58,7 +58,7 @@
                         <td>
                           <div class="row">
                             <a class="btn btn-sm btn-success btn-raised " href="/administradores/visualizar/<?=$value['id']?>" >Alterar</a>
-                            <a  onclick="excluirUsuario('<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                            <a  onclick="confirmDialog('Excluir usuário', 'Deseja excluir usuário mesmo?','/administradores/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                           </div>
                         </td>
                     </tr>

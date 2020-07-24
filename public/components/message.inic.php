@@ -1,6 +1,6 @@
 <?php if($session->getFlashdata('save')):?>
     <?php if($session->getFlashdata('save')['status'] != 1):?>
-    <div>
+    <div id="card-message">
         <div class="alert alert-danger">
             <h4><i class="icon fa fa-ban"></i>Falha encontrada!</h4>
                <?=$session->getFlashdata('save')['message']?>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <?php else: ?>
-    <div>
+    <div id="card-message">
         <div class="alert alert-success">
             <h4><i class="icon fa fa-check"></i> Realizado!</h4>
             <?=$session->getFlashdata('save')['message']?>

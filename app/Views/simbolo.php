@@ -101,7 +101,7 @@
                           <td>
                             <div class="row">
                               <a class="btn btn-sm btn-success btn-raised" onclick="alterarDescricaoSimbolo('<?=$value['id']?>','<?=$value['descricao']?>','<?=$value['tipo']?>')" >Alterar</a>
-                              <a  onclick="excluirSimboloDesc('<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                              <a  onclick="confirmDialog('Excluir causa/solução', 'Deseja excluir descrição do simbolo?','/simbolos/item-excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                             
                             </div>
                           </td>
@@ -154,31 +154,3 @@
 <?php include('components/script.inic.php');?>
 </body>
 </html>
-
-<script>
-    let excluirSimboloDesc = (id)=>{
-        if(confirm("Deseja excluir descrição do simbolo?")){
-          window.location.href = "/simbolos/item-excluir/" + id;
-        }
-    }
-
-    let alterarDescricaoSimbolo = (id,desc,tipo)=>{
-
-      document.getElementById('editlistsimbolo').action = "/simbolos/item-alterar/" + id;
-      document.getElementById('descSimboloEdir').innerHTML = desc;
-      document.getElementById('tipoListedit').innerHTML = tipo;
-
-      $('#simbolo').modal('toggle');
-    }
-
-    let  readURL = (input) =>{
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-              $('#blah').attr('src', e.target.result);
-              document.getElementById('imagem').innerHTML = input.files[0]['name'];
-          };
-          reader.readAsDataURL(input.files[0]);
-      }
-    }
-</script>

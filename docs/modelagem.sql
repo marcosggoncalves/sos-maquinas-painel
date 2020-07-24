@@ -37,7 +37,7 @@ create table categorias_simbolos(
 	imagem text,
 	titulo text,
 	categoria_id int,
-	foreign key(categoria_id) references categorias(id)
+	foreign key(categoria_id) references categorias(id) ON DELETE CASCADE
 );
 
 create table simbolos_items(
@@ -45,6 +45,6 @@ create table simbolos_items(
 	descricao text,
 	tipo varchar(255),
 	categoria_simbolo_id int,
-	foreign key(categoria_simbolo_id) references categorias_simbolos(id)
+	foreign key(categoria_simbolo_id) references categorias_simbolos(id) ON DELETE CASCADE
 );
 

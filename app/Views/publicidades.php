@@ -76,7 +76,7 @@
                           <td>
                             <div class="row">
                               <a class="btn btn-sm btn-success btn-raised " href="/publicidades/visualizar/<?=$value['id']?>" >Alterar</a>
-                              <a  onclick="excluirPublicidade('<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                              <a  onclick="confirmDialog('Excluir publicidade', 'Deseja excluir publicidade mesmo?','/publicidades/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                             </div>
                           </td>
                       </tr>
@@ -92,23 +92,3 @@
 <?php include('components/script.inic.php');?>
 </body>
 </html>
-
-<script>
-  
-  let excluirPublicidade = (id)=>{
-      if(confirm("Deseja excluir publicidade?")){
-        window.location.href = "/publicidades/excluir/" + id;
-      }
-  }
-  
-  let  readURL = (input) =>{
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-            document.getElementById('imagem').innerHTML = input.files[0]['name'];
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-  }
-</script>
