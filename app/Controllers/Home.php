@@ -28,9 +28,9 @@ class Home extends BaseController
 		$data = [
 			'titulo' => "SOS Máquinas | Painel",
 			'countUsuarios' => $this->usuariosModel->getCount(),
-			'usuarios' => $this->usuariosModel->getAll(0,30),
+			'usuarios' => $this->usuariosModel->getLimit(0,30),
 			'countPublicidades' => $this->publicidadesModel->getCount(),
-			'publicidades' => $this->publicidadesModel->getAll(0,10),
+			'publicidades' => $this->publicidadesModel->getLimit(0,6),
 			'countCategorias'=> $this->categoriasModel->getCount(),
 			'countSimbolos' => $this->categoriasSimbolosModel->getCount()
 		];
@@ -60,7 +60,7 @@ class Home extends BaseController
 			$data = [
 				'validate'=>$this->validator->listErrors(),
 				'status'=>false,
-				'message'=>'Não foi possivel acessar o painelSite !'
+				'message'=>'Não foi possivel realizar login no sistema!'
 			];
 	
 			$this->session->setFlashdata('save', $data);

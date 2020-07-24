@@ -19,7 +19,7 @@ class Usuarios extends BaseController
 	{
 		$data = [
 			'titulo' => 'SOS Máquinas | Usuários',
-			'usuarios' => $this->usuariosModel->getAll(0,100),
+			'usuarios' => $this->usuariosModel->getAll(),
 		];
 
 		return view('usuarios', $data);

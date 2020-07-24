@@ -20,9 +20,14 @@ class PublicidadesModel extends Model
 		return $this->countAll();
 	}
 
-	public function getAll($limit, $offset)
+    public function getLimit($limit, $offset)
+    {
+        return $this->findAll($limit, $offset);
+    }
+
+	public function getAll()
 	{
-		return $this->findAll($limit, $offset);
+		return $this->findAll();
 	}
 
 	public function newPublicidade($publicidade)

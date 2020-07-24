@@ -14,8 +14,29 @@ class UsuariosModel extends Model
 		return $this->countAll();
 	}
 
-	public function getAll($limit, $offset)
+	public function getLimit($limit, $offset)
 	{
 		return $this->findAll($limit, $offset);
 	}
+
+	public function getAll()
+	{
+		return $this->findAll();
+	}
+
+	public function logar($find)
+    {
+        $this->where($find);
+        return $this->findAll();
+    }
+
+    public function newUsuario($usuario)
+    {
+        return $this->save($usuario);
+    }
+
+    public function editUsuario($id,$data)
+    {
+       return $this->where('id',$id)->set($data)->update();
+    }
 }

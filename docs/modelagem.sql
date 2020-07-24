@@ -32,19 +32,21 @@ create table categorias(
 );
 
 create table categorias_simbolos(
-	id int not null primary key auto_increment,
+	id int not null auto_increment,
 	descricao text,
 	imagem text,
 	titulo text,
 	categoria_id int,
-	foreign key(categoria_id) references categorias(id) ON DELETE CASCADE
+	PRIMARY KEY (id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE
 );
 
 create table simbolos_items(
-	id int not null primary key auto_increment,
+	id int not null  auto_increment,
 	descricao text,
 	tipo varchar(255),
 	categoria_simbolo_id int,
-	foreign key(categoria_simbolo_id) references categorias_simbolos(id) ON DELETE CASCADE
+	PRIMARY KEY (id),
+    FOREIGN KEY (categoria_simbolo_id) REFERENCES categorias_simbolos(id) ON DELETE CASCADE
 );
 

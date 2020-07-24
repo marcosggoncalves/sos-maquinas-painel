@@ -33,6 +33,11 @@ class BaseController extends Controller
 	 */
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
 	{
+
+		header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 

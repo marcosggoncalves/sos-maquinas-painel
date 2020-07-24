@@ -18,7 +18,7 @@ class publicidades extends BaseController
 	{
 		$data = [
 			'titulo' => 'SOS Máquinas | Publicidades',
-			'publicidades' => $this->publicidadesModel->getAll(0,100)
+			'publicidades' => $this->publicidadesModel->getAll()
 		];
 
 		return view('publicidades', $data);
