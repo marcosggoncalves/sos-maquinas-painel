@@ -40,6 +40,7 @@
               </li>
             </ul>
           </li>
+          <li><a href="/sincronizacao">Sincronizações Agendadas </a> </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
