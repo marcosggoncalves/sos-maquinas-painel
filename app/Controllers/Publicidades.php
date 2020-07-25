@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PublicidadesModel;
+use App\Models\SicronizacaoModel;
 
 class publicidades extends BaseController
 {
@@ -12,13 +13,17 @@ class publicidades extends BaseController
 		helper('form');
 
 		$this->publicidadesModel = new PublicidadesModel();
+		$this->sicronizacaoModel  = new SicronizacaoModel();
 	}
 
 	public function index()
 	{
+		$pager = \Config\Services::pager();
+
 		$data = [
 			'titulo' => 'SOS Máquinas | Publicidades',
-			'publicidades' => $this->publicidadesModel->getAll()
+			'publicidades' => $this->publicidadesModel->paginate(15),
+			'pager' => $this->publicidadesModel->pager
 		];
 
 		return view('publicidades', $data);
@@ -96,7 +101,7 @@ class publicidades extends BaseController
 				$data['status'] = true;
 			}
 
-
+			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			$this->session->setFlashdata('save', $data);
 			return redirect()->to('/publicidades');
 		} 
@@ -126,6 +131,7 @@ class publicidades extends BaseController
 		}
 
 		$this->publicidadesModel->deletePublicidade($id);
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
 		return redirect()->to('/publicidades');
 	}
@@ -186,7 +192,8 @@ class publicidades extends BaseController
 			$data['message'] = "Publicidade alterada com sucesso!";
 			$data['status'] = true;
 		}
-
+		
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
 		return redirect()->to('/publicidades');
 	}

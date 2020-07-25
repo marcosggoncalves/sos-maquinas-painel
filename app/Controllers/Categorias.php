@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CategoriasModel;
+use App\Models\SicronizacaoModel;
 
 class Categorias extends BaseController
 {
@@ -12,13 +13,17 @@ class Categorias extends BaseController
 		helper('form');
 
 		$this->categoriasModel = new CategoriasModel();
+		$this->sicronizacaoModel  = new SicronizacaoModel();
 	}
 
 	public function index()
 	{
+		$pager = \Config\Services::pager();
+
 		$data = [
 			'titulo' => 'SOS Máquinas | Categorias',
-			'categorias' => $this->categoriasModel->getAll()
+			'categorias' => $this->categoriasModel->paginate(15),
+			'pager' => $this->categoriasModel->pager
 		];
 
 		return view('categorias', $data);
@@ -91,7 +96,8 @@ class Categorias extends BaseController
 				$data['message'] = "Nova categoria cadastrada com sucesso!";
 				$data['status'] = true;
 			}
-
+			
+			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			$this->session->setFlashdata('save', $data);
 			return redirect()->to('/categorias');
 		} 
@@ -119,6 +125,8 @@ class Categorias extends BaseController
 				$data['status'] = true;
 			}
 		}
+
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 
 		$this->categoriasModel->deleteCategoria($id);
 		$this->session->setFlashdata('save', $data);
@@ -178,6 +186,7 @@ class Categorias extends BaseController
 			$data['status'] = true;
 		}
 
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
 		return redirect()->to('/categorias');
 	}

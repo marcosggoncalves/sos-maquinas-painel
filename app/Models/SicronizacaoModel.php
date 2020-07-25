@@ -4,67 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsuariosAdministradoresModel extends Model
+class SicronizacaoModel extends Model
 {
-	protected $table = 'usuarios_admin';
+	protected $table = 'atualizacoes';
 	
-	protected $allowedFields = [
-		"email",
-		"senha"
-	];
-	
-	public function getCount()
-	{
-		return $this->countAll();
-	}
-
-	public function getAll()
-	{
-		return $this->findAll();
-	}
-
-	public function newUsuario($usuario)
-    {
-        return $this->save($usuario);
-    }
-
-    public function deleteUsuario($id)
-    {   
-        $this->where('id',$id);
-        return $this->delete();
-    }
-    
-    public function getUsuarioEdit($id)
-    {
-        return $this->where('id', $id)->findAll();
-    }
-
-    public function verifyEmail($email)
-    {
-        return $this->where('email', $email)->first();
-    }
-    
-    public function editUsuario($id,$data)
-    {
-       return $this->where('id',$id)->set($data)->update();
-    }
-
-    public function clear()
-    {
-        $this->db->query('delete from usuarios');
-        $this->db->query('delete from publicidades');
-        $this->db->query('delete from categorias');
-        $this->db->query('delete from categorias_simbolos');
-        $this->db->query('delete from atualizacoes');
-        return $this->db->query('delete from simbolos_items');
-    }
-
-    public function logar($find)
-    {
-        $this->where($find);
-        return $this->findAll();
-    }
-
     public function getAtualizacoes()
     {
         return $this->db->table('atualizacoes')
@@ -103,5 +46,31 @@ class UsuariosAdministradoresModel extends Model
                 'usuarios_admin_id' => $cadastroID
             ]);
         }
+    }
+
+    public function concluirAtualizacao()
+    {
+        $verifySincronizacao = $this->db->table('atualizacoes')
+                                ->where('status =', 'Pendente')
+                                ->orderBy('id', 'DESC')
+                                ->get()
+                                ->getResult();
+        
+        if(empty($verifySincronizacao)){
+            return [
+                "status" => false,
+                "message" => "Não há atualizações no momento!"
+            ];
+        }
+
+        $status = $this->db->table('atualizacoes')->set([
+            "realizado" =>  date("Y-m-d H:i:s"),
+            "status" => "Concluido"
+        ])->update();
+
+       return  [
+            "status" => $status,
+            "message" => $status ? 'Sincronização realizada com sucesso!': 'Não foi possivel realizar sincronização, tente novamente !'
+        ];
     }
 }

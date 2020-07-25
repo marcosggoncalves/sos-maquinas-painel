@@ -50,3 +50,12 @@ create table simbolos_items(
     FOREIGN KEY (categoria_simbolo_id) REFERENCES categorias_simbolos(id) ON DELETE CASCADE
 );
 
+create table atualizacoes(
+	id int not null  auto_increment,
+	atualizacao datetime default now(),
+	realizado datetime,
+	status varchar(50) default 'Pendente',
+	usuarios_admin_id int,
+	PRIMARY KEY (id),
+	FOREIGN KEY (usuarios_admin_id) REFERENCES usuarios_admin(id) ON DELETE CASCADE
+);

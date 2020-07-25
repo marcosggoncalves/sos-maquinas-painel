@@ -23,11 +23,9 @@ class CategoriasSimbolosModel extends Model
 
 	public function getAll()
 	{	
-		return $this->db->table('categorias_simbolos')
+		return $this
 			->select("categorias_simbolos.id, categorias_simbolos.titulo, categorias_simbolos.imagem, categorias_simbolos.descricao, categorias_simbolos.categoria_id, categorias.categoria")
-			->join('categorias', 'categorias.id = categoria_id')
-			->get()
-			->getResult('array');  
+			->join('categorias', 'categorias.id = categoria_id'); 
 	}
 
 	public function newSimbolo($simbolo)

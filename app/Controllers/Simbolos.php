@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CategoriasSimbolosModel;
 use App\Models\SimbolosItemsModel;
 use App\Models\CategoriasModel;
+use App\Models\SicronizacaoModel;
 
 class Simbolos extends BaseController
 {
@@ -16,29 +17,35 @@ class Simbolos extends BaseController
 		$this->simbolosModel = new CategoriasSimbolosModel();
 		$this->categoriasModel = new CategoriasModel();
 		$this->simbolosItemModel = new SimbolosItemsModel();
+		$this->sicronizacaoModel  = new SicronizacaoModel();
 
 	}
 
 	public function index()
 	{
+		$pager = \Config\Services::pager();
+
 		$data = [
 			'titulo' => 'SOS Máquinas | Simbolos',
-			'simbolos' => $this->simbolosModel->getAll(),
-			'categorias' => $this->categoriasModel->getAll()
+			'simbolos' => $this->simbolosModel->getAll()->paginate(15),
+			'categorias' => $this->categoriasModel->getAll(),
+			'pager' => $this->simbolosModel->pager
 		];
 
 		return view('simbolos', $data);
 	}
 
 	public function visualizar($id)
-	{
+	{	
+		$pager = \Config\Services::pager();
+
 		$simbolo = $this->simbolosModel->getSimboloEdit($id);
 
 		$data = [
 			'status'=>false,
 			'message'=> 'Simbolo não encontrada!'
 		];
-
+ 
 		if(empty($simbolo)){
 			$this->session->setFlashdata('save', $data);
 			return redirect()->to('/simbolos');
@@ -48,7 +55,8 @@ class Simbolos extends BaseController
 			'titulo' => "SOS Máquinas | " . $simbolo[0]['titulo'],
 			'simbolo' => $simbolo[0],
 			'categorias' => $this->categoriasModel->getAll(),
-			'itens' => $this->simbolosItemModel->getAll()
+			'itens' => $this->simbolosItemModel->paginate(15),
+			'pager' => $this->simbolosItemModel->pager
 		];
 
 		return view('simbolo', $data);
@@ -103,6 +111,7 @@ class Simbolos extends BaseController
 				$data['status'] = true;
 			}
 
+			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			$this->session->setFlashdata('save', $data);
 			return redirect()->to('/simbolos');
 		} 
@@ -132,6 +141,7 @@ class Simbolos extends BaseController
 		}
 
 		$this->simbolosModel->deleteSimbolo($id);
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
 		return redirect()->to('/simbolos');
 	}
@@ -192,6 +202,7 @@ class Simbolos extends BaseController
 			$data['status'] = true;
 		}
 
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
 		return redirect()->to('/simbolos');
 	}
@@ -244,11 +255,12 @@ class Simbolos extends BaseController
 				$this->session->setFlashdata('save', $data);
 			}
 
+			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			return redirect()->to("/simbolos/visualizar/" . $id);
 		}
 	}
 
-	public function itemExcluir($id)
+	public function itemExcluir($id,$categoria_id)
 	{
 		$delete = $this->simbolosItemModel->deleteSimboloItem($id);
 
@@ -268,7 +280,8 @@ class Simbolos extends BaseController
 			$this->session->setFlashdata('save', $data);
 		}
 
-		return redirect()->to('/simbolos/visualizar/'.$id);
+		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
+		return redirect()->to('/simbolos/visualizar/'.$categoria_id);
 	}
 
 	public function itemAlterar($id)
@@ -330,6 +343,7 @@ class Simbolos extends BaseController
 				$this->session->setFlashdata('save', $data);
 			}
 
+			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			return redirect()->to("/simbolos/visualizar/" . $itemSimbolo[0]['categoria_simbolo_id']);
 		}
 	}

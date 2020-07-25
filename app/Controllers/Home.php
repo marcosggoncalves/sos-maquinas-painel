@@ -25,6 +25,9 @@ class Home extends BaseController
 
 	public function index()
 	{
+
+		$atualizacao = $this->usuariosAdminModel->atualizacao();
+
 		$data = [
 			'titulo' => "SOS Máquinas | Painel",
 			'countUsuarios' => $this->usuariosModel->getCount(),
@@ -34,6 +37,16 @@ class Home extends BaseController
 			'countCategorias'=> $this->categoriasModel->getCount(),
 			'countSimbolos' => $this->categoriasSimbolosModel->getCount()
 		];
+
+		if($atualizacao['pendente'] > 1){
+			$data['status'] = false;
+			$data['message'] = "Sincronização de dados não está sendo executada corretamente.";
+		}
+
+		if($atualizacao['pendente'] === 1){
+			$data['status'] = true;
+			$data['message'] = "Sincronização criada em " . date_format(date_create($atualizacao['atualizacao'][0]->atualizacao), 'd/m/Y H:i:s') . " foi encontrada, em breve sincronização será feita."; 
+		}
 
 		return view('index', $data);
 	}

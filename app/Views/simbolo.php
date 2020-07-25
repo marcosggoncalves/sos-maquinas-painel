@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group">
                       <label>Descrição</label>
-                      <textarea class="form-control" name="descricao" id="descricao" ></textarea>
+                      <textarea rows="5" cols="30"  class="form-control" name="descricao" id="descricao" ></textarea>
                     </div>
                   </div>
                   <div class="box-footer">
@@ -88,7 +88,6 @@
                     <tr>
                       <th class="text-center">ID</th>
                       <th class="text-center">Descrição</th>
-                      <th class="text-center">Tipo</th>
                       <th class="text-center">Opções</th>
                     </tr>
                   </thead>
@@ -96,12 +95,16 @@
                       <?php foreach ($itens as $value) :?>
                         <tr class="text-center">
                           <td><?=$value['id']?></td>
-                          <td><?=$value['descricao']?></td>
-                          <td><?=$value['tipo']?></td>
+                          <td>
+                            <details>
+                              <summary><?=$value['tipo']?></summary>
+                                <?=$value['descricao']?>
+                            </details>
+                          </td>
                           <td>
                             <div class="row">
-                              <a class="btn btn-sm btn-success btn-raised" onclick="alterarDescricaoSimbolo('<?=$value['id']?>','<?=$value['descricao']?>','<?=$value['tipo']?>')" >Alterar</a>
-                              <a  onclick="confirmDialog('Excluir causa/solução', 'Deseja excluir descrição do simbolo?','/simbolos/item-excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                              <a class="btn btn-sm btn-success btn-raised" onclick="alterarDescricaoSimbolo(`<?=$value['id']?>'`,`<?=$value['descricao']?>`,`<?=$value['tipo']?>`)" >Alterar</a>
+                              <a  onclick="confirmDialog('Excluir causa/solução', 'Deseja excluir descrição do simbolo?','/simbolos/item-excluir/' + '<?=$value['id']?>/<?=$value['categoria_simbolo_id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                             
                             </div>
                           </td>
@@ -109,6 +112,10 @@
                       <?php endforeach; ?>
                   </tbody>
               </table>
+
+              <div> 
+                <?= $pager->links() ?>
+              </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="simbolo" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -134,7 +141,7 @@
                       </div>
                       <div class="form-group">
                         <label>Descrição</label>
-                        <textarea class="form-control" name="descSimbolo" id="descSimboloEdir" ></textarea>
+                        <textarea rows="8" cols="30" class="form-control" name="descSimbolo" id="descSimboloEdir" ></textarea>
                       </div>    
                         <div class="modal-footer">
                           <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>

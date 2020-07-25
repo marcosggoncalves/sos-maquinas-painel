@@ -116,33 +116,47 @@
           </div>
         </div>
         <div class="col-lg-4">
-              <!-- USERS LIST -->
-              <div class="box box-danger">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Publicidades</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body no-padding">
-                  <ul class="users-list clearfix">
-                    <?php foreach ($publicidades as $value): ?>
-                     <li>
-                        <img src="<?=$value['imagem']?>" alt="<?=$value['cliente']?>">
-                        <a class="users-list-name" href="/publicidades/visualizar/<?=$value['id']?>"><?=$value['cliente']?></a>
-                        <span class="users-list-date">Tempo: <?=$value['duracao']?></span>
-                      </li>
-                   <?php endforeach?>
-                  </ul>
-                  <!-- /.users-list -->
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer text-center">
-                  <a href="/publicidades" class="uppercase">Mais</a>
-                </div>
-                <!-- /.box-footer -->
-              </div>
-              <!--/.box -->
+          <!-- USERS LIST -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Publicidades</h3>
             </div>
-          <!-- /.box -->
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <ul class="users-list clearfix">
+                <?php foreach ($publicidades as $value): ?>
+                 <li>
+                    <img src="<?=$value['imagem']?>" alt="<?=$value['cliente']?>">
+                    <a class="users-list-name" href="/publicidades/visualizar/<?=$value['id']?>"><?=$value['cliente']?></a>
+                    <span class="users-list-date">Tempo: <?=$value['duracao']?></span>
+                  </li>
+               <?php endforeach?>
+              </ul>
+              <!-- /.users-list -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+              <a href="/publicidades" class="uppercase">Mais</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+
+          <div>
+            <?php if(isset($status) && !$status): ?>
+              <div class="alert alert-danger alert-dismissible">
+                <h4><i class="icon fa fa-ban"></i> Aplicativo precisa de atenção!</h4>
+                <?=$message?>
+              </div>
+            <?php endif ?>
+
+            <?php if(isset($status) && $status): ?>
+               <div class="alert alert-success alert-dismissible">
+                <h4><i class="icon fa fa-check"></i> Sincronização Agendada!</h4>
+                <?=$message?>
+              </div>
+            <?php endif ?>
+
+          </div>
         </div>
       </div>
     </section>

@@ -70,6 +70,10 @@
                   <?php endforeach?>
                 </tbody>
             </table>
+            
+            <div> 
+              <?= $pager->links() ?>
+            </div>
           </div>
           <!-- /.box-body -->
         </div>

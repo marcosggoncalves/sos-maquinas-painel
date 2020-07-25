@@ -8,6 +8,7 @@ use App\Models\CategoriasModel;
 use App\Models\PublicidadesModel;
 use App\Models\CategoriasSimbolosModel;
 use App\Models\SimbolosItemsModel;
+use App\Models\SicronizacaoModel;
 
 use CodeIgniter\API\ResponseTrait;
 
@@ -26,54 +27,20 @@ class Api extends BaseController
 		$this->categoriasModel = new CategoriasModel();
 		$this->categoriasSimbolosModel = new CategoriasSimbolosModel();
 		$this->simbolosItemModel = new SimbolosItemsModel();
+		$this->sicronizacaoModel  = new SicronizacaoModel();
 	}
 
-	public function publicidades()
+	public function data()
 	{
-		 return $this->respond([
-		 	'success' => true,
-		 	'publicidades' => $this->publicidadesModel->getAll(0,10)
-		 ], 200);
-	}
+		$data = [
+			'success' => true,
+			'publicidades' => $this->publicidadesModel->getAll(),
+			'categorias' => $this->categoriasModel->getAll(),
+			'simbolos' => $this->categoriasSimbolosModel->getAll()->get()->getResult(),
+			'simbolosItens' => $this->simbolosItemModel->getAll()
+		];
 
-	public function categorias()
-	{	
-		 return $this->respond([
-		 	'success' => true,
-		 	'categorias' => $this->categoriasModel->getAll()
-		 ], 200);
-	}
-
-	public function simbolos()
-	{
-		 return $this->respond([
-		 	'success' => true,
-		 	'categorias' => $this->categoriasSimbolosModel->getAll()
-		 ], 200);
-	}
-
-	public function get_publicidade($id)
-	{
-		 return $this->respond([
-		 	'success' => true,
-		 	'publicidade' => $this->publicidadesModel->getPublicidadeEdit($id)
-		 ], 200);
-	}
-
-	public function get_categoria($id)
-	{	
-		 return $this->respond([
-		 	'success' => true,
-		 	'categoria' => $this->categoriasModel->getCategoriaEdit($id)
-		 ], 200);
-	}
-
-	public function get_items_simbolos($id)
-	{	
-		 return $this->respond([
-		 	'success' => true,
-		 	'itens' => $this->simbolosItemModel->getSimboloEditItem($id)
-		 ], 200);
+		 return $this->respond($data, 200);
 	}
 
 	public function logar()
@@ -114,7 +81,7 @@ class Api extends BaseController
 				'usuario' => $usuario
 			];
 
-			return $this->respond($session, 200);
+			return $this->respond($data, 200);
 		}
 	}
 
@@ -221,7 +188,14 @@ class Api extends BaseController
 				];
 			}
 			
-			return $this->respond($session, 200);
+			return $this->respond($data, 200);
 		}
+	}
+
+	public function sincronizar()
+	{
+		$sincronizar = $this->sicronizacaoModel->concluirAtualizacao();
+
+		return $this->respond($sincronizar, 200);
 	}
 }
