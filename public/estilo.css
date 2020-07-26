@@ -1,0 +1,44 @@
+.search form{
+  background: #303F9F;
+  display: flex;
+  padding: 15px 15px;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.container-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-input input{
+  padding: 7px 10px;
+  width: 50vw;
+  border:none;
+}
+
+.container-btn{
+  padding-left: 10px;
+}
+
+.container-btn button{
+  background: none;
+  border:1px solid #ffff;
+  color: #fff;
+  padding: 5px 15px;
+}
+
+.jconfirm .jconfirm-box .jconfirm-buttons button.btn-blue {
+  background-color: #303F9F;
+  color: #FFF;
+  text-shadow: none;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+}
+
+@media screen and (min-width: 720px){
+  .container-input input{
+    width: 1000px;
+  }
+}

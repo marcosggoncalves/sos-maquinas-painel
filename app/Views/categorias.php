@@ -40,6 +40,17 @@
             </form>
           </div>
 
+      <div class="search">
+        <form action="/categorias/pesquisar" method="post">
+           <div class="container-input">
+            <input type="search" name="search" placeholder="Digite o nome da categoria para buscar...">
+          </div>
+          <div class="container-btn">
+            <button type="submit">Pesquisar</button>
+          </div>
+        </form>
+      </div>
+
        <div class="box">
           <!-- /.box-header -->
           <div class="box-body table-responsive">
@@ -85,12 +96,3 @@
 <?php include('components/script.inic.php');?>
 </body>
 </html>
-
-<script>
-    let excluirCategoria = (id)=>{
-        if(confirm("Deseja excluir categoria?")){
-          window.location.href = "/categorias/excluir/" + id;
-        }
-    }
-</script>
-

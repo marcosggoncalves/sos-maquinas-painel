@@ -30,7 +30,7 @@
               <li class="divider"></li>
               <li >
                 <a href="/anuncios">
-                  <i class="fa  fa-flag"></i> <span>Anuncios</span>
+                  <i class="fa  fa-flag"></i> <span>Anúncios</span>
                 </a>
               </li>
               <li class="divider"></li>

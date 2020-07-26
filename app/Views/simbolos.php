@@ -52,6 +52,17 @@
               </div>
             </form>
           </div>
+      
+      <div class="search">
+        <form action="/simbolos/pesquisar" method="post">
+           <div class="container-input">
+            <input type="search" name="search" placeholder="Digite o nome do simbolo para pesquisar...">
+          </div>
+          <div class="container-btn">
+            <button type="submit">Pesquisar</button>
+          </div>
+        </form>
+      </div>
 
        <div class="box">
           <!-- /.box-header -->

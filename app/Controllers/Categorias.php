@@ -29,6 +29,20 @@ class Categorias extends BaseController
 		return view('categorias', $data);
 	}
 
+	public function pesquisar()
+	{	
+		$pesquisa =  $this->request->getVar('search');
+		$pager = \Config\Services::pager();
+
+		$data = [
+			'titulo' => 'SOS Máquinas | Pesquisar categorias',
+			'categorias' => $this->categoriasModel->like('categoria', $pesquisa)->orderBy('id',' desc')->paginate(15),
+			'pager' => $this->categoriasModel->pager
+		];
+
+		return view('categorias', $data);
+	}
+
 	public function visualizar($id)
 	{
 		$categoria = $this->categoriasModel->getCategoriaEdit($id);

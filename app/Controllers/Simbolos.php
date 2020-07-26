@@ -35,6 +35,21 @@ class Simbolos extends BaseController
 		return view('simbolos', $data);
 	}
 
+	public function pesquisar()
+	{
+		$pesquisa =  $this->request->getVar('search');
+		$pager = \Config\Services::pager();
+
+		$data = [
+			'titulo' => 'SOS Máquinas | Pesquisar simbolos',
+			'simbolos' => $this->simbolosModel->getAll()->like('categorias_simbolos.titulo', $pesquisa)->paginate(15),
+			'categorias' => $this->categoriasModel->getAll(),
+			'pager' => $this->simbolosModel->pager
+		];
+
+		return view('simbolos', $data);
+	}
+
 	public function visualizar($id)
 	{	
 		$pager = \Config\Services::pager();
@@ -55,8 +70,7 @@ class Simbolos extends BaseController
 			'titulo' => "SOS Máquinas | " . $simbolo[0]['titulo'],
 			'simbolo' => $simbolo[0],
 			'categorias' => $this->categoriasModel->getAll(),
-			'itens' => $this->simbolosItemModel->orderBy('id',' desc')->paginate(15),
-			'pager' => $this->simbolosItemModel->pager
+			'itens' => $this->simbolosItemModel->getAll()
 		];
 
 		return view('simbolo', $data);

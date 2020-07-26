@@ -88,13 +88,3 @@
   }
 
 </script>
-
-<style type="text/css">
-  .jconfirm .jconfirm-box .jconfirm-buttons button.btn-blue {
-      background-color: #303F9F;
-      color: #FFF;
-      text-shadow: none;
-      -webkit-transition: background .2s;
-      transition: background .2s;
-  }
-</style>

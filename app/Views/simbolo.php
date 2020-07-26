@@ -112,12 +112,6 @@
                       <?php endforeach; ?>
                   </tbody>
               </table>
-
-              <div> 
-                <?php if(count($itens) > 15): ?>
-                  <?= $pager->links() ?>
-                <?php endif?>
-              </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="simbolo" tabindex="-1" role="dialog"  aria-hidden="true">

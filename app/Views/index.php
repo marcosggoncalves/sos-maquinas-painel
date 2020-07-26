@@ -53,7 +53,7 @@
             <div class="small-box navbar">
               <div class="inner">
                 <h3><?=$countPublicidades ?></h3>
-                <p>Anuncios</p>
+                <p>Anúncios</p>
               </div>
               <div class="icon">
                 <i class="fa fa-picture-o"></i>

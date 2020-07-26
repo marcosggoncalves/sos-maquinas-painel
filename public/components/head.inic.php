@@ -12,9 +12,8 @@
   <link rel="stylesheet" type="text/css" href="dist/css/MaterialAdminLTE.min.css">
   <link rel="stylesheet" type="text/css" href="dist/css/skins/all-md-skins.min.css">
   <link rel="stylesheet" type="text/css" href="dist/css/main.css">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-  
+  <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
 <?php
