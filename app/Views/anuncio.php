@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                   <label for="duracao">Duração de publicidade:</label>
-                  <input type="time" class="form-control" name="duracao" id="duracao" placeholder="Tempo de duração" value="<?=$publicidade['duracao']?>">
+                  <input type="integer" class="form-control" name="duracao" id="duracao" placeholder="Tempo de duração" value="<?=$publicidade['duracao']?>">
                 </div>
                 <div class='input'>
                   <label class='upload' for='file'><img id="blah" width="40"/> <b id="imagem"> Selecionar imagem para publicidade</b></label>

@@ -22,7 +22,7 @@ create table publicidades(
 	imagem text,
 	link text,
 	cliente text,
-	duracao time
+	duracao int
 );
 
 create table categorias(

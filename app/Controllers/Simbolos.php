@@ -223,7 +223,7 @@ class Simbolos extends BaseController
 
 	// Adicionar, excluir e alterar causas e soluções dos simbolos
 
-	public function itemCadastrar($id)
+	public function item_cadastrar($id)
 	{
 		$validation = \Config\Services::validation();
 
@@ -274,7 +274,7 @@ class Simbolos extends BaseController
 		}
 	}
 
-	public function itemExcluir($id,$categoria_id)
+	public function item_excluir($id,$categoria_id)
 	{
 		$delete = $this->simbolosItemModel->deleteSimboloItem($id);
 
@@ -298,7 +298,7 @@ class Simbolos extends BaseController
 		return redirect()->to('/simbolos/visualizar/'.$categoria_id);
 	}
 
-	public function itemAlterar($id)
+	public function item_alterar($id)
 	{
 
 		$itemSimbolo = $this->simbolosItemModel->getSimboloEditItem($id);

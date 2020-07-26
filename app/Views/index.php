@@ -129,7 +129,7 @@
                 <?php foreach ($publicidades as $value): ?>
                  <li>
                     <img src="<?=$value['imagem']?>" alt="<?=$value['cliente']?>">
-                    <a class="users-list-name" href="/publicidades/visualizar/<?=$value['id']?>"><?=$value['cliente']?></a>
+                    <a class="users-list-name" href="/anuncios/visualizar/<?=$value['id']?>"><?=$value['cliente']?></a>
                     <span class="users-list-date">Tempo: <?=$value['duracao']?></span>
                   </li>
                <?php endforeach?>

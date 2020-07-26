@@ -33,8 +33,8 @@
                     <input type="text" class="form-control" name="link" id="link" placeholder="Link de redirecionamento publicidade:">
                   </div>
                   <div class="form-group">
-                    <label for="duracao">Duração de publicidade:</label>
-                    <input type="time" class="form-control" name="duracao" id="duracao" placeholder="Tempo de duração">
+                    <label for="duracao">Duração de publicidade(em segundos):</label>
+                    <input type="number" class="form-control" name="duracao" id="duracao" placeholder="Tempo de duração">
                   </div>
                   <div class='input'>
                     <label class='upload' for='file'><img id="blah" width="40"/> <b id="imagem"> Selecionar imagem para publicidade</b></label>
