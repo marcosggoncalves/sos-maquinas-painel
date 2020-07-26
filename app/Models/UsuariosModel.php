@@ -7,7 +7,15 @@ use CodeIgniter\Model;
 class UsuariosModel extends Model
 {
 	protected $table = 'usuarios';
-	protected $allowedFields = [];
+	protected $allowedFields = [
+		"email",
+		"cpf",	
+		"empresa",	
+		"marca_veiculo",
+		"tipo_veiculo",
+		"nome",
+		"telefone"
+	];
 	
 	public function getCount()
 	{
@@ -16,7 +24,7 @@ class UsuariosModel extends Model
 
 	public function getLimit($limit, $offset)
 	{
-		return $this->findAll($limit, $offset);
+		return $this ->orderBy('id', 'DESC')->findAll($limit, $offset);
 	}
 
 	public function getAll()

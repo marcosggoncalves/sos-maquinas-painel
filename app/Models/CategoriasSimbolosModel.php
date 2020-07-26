@@ -25,6 +25,7 @@ class CategoriasSimbolosModel extends Model
 	{	
 		return $this
 			->select("categorias_simbolos.id, categorias_simbolos.titulo, categorias_simbolos.imagem, categorias_simbolos.descricao, categorias_simbolos.categoria_id, categorias.categoria")
+			->orderBy('categorias_simbolos.id',' desc')
 			->join('categorias', 'categorias.id = categoria_id'); 
 	}
 

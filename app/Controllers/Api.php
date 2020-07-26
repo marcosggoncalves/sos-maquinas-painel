@@ -5,25 +5,20 @@ namespace App\Controllers;
 use App\Models\UsuariosModel;
 use App\Models\UsuariosAdministradoresModel;
 use App\Models\CategoriasModel;
-use App\Models\PublicidadesModel;
+use App\Models\AnunciosModel;
 use App\Models\CategoriasSimbolosModel;
 use App\Models\SimbolosItemsModel;
 use App\Models\SicronizacaoModel;
 
-use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\RESTful\ResourceController;
 
-class Api extends BaseController
-{
-	 use ResponseTrait;
-
+class Api extends ResourceController
+{	
 	public function __construct()
     {
-		helper('url');
-		helper('form');
-
 		$this->usuariosModel = new UsuariosModel();
 		$this->usuariosAdminModel = new UsuariosAdministradoresModel();
-		$this->publicidadesModel = new PublicidadesModel();
+		$this->anunciosModel = new AnunciosModel();
 		$this->categoriasModel = new CategoriasModel();
 		$this->categoriasSimbolosModel = new CategoriasSimbolosModel();
 		$this->simbolosItemModel = new SimbolosItemsModel();
@@ -34,7 +29,7 @@ class Api extends BaseController
 	{
 		$data = [
 			'success' => true,
-			'publicidades' => $this->publicidadesModel->getAll(),
+			'publicidades' => $this->anunciosModel->getAll(),
 			'categorias' => $this->categoriasModel->getAll(),
 			'simbolos' => $this->categoriasSimbolosModel->getAll()->get()->getResult(),
 			'simbolosItens' => $this->simbolosItemModel->getAll()
@@ -78,7 +73,7 @@ class Api extends BaseController
 			$data = [
 				'status'=>true,
 				'message'=>'Login efetuado com sucesso!',
-				'usuario' => $usuario
+				'usuario' => $entrar[0]
 			];
 
 			return $this->respond($data, 200);
@@ -135,7 +130,7 @@ class Api extends BaseController
 				];
 			}
 			
-			return $this->respond($session, 200);
+			return $this->respond($data, 200);
 		}
 	}
 
@@ -174,7 +169,7 @@ class Api extends BaseController
 				"telefone" => $this->request->getVar('telefone')
 			];
 
-			$save = $this->usuariosModel->editUsuario($id.$usuario);
+			$save = $this->usuariosModel->editUsuario($id,$usuario);
 
 			if($save){
 				$data = [

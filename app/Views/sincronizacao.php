@@ -55,7 +55,9 @@
                 </table>
 
                 <div> 
-                  <?= $pager->links() ?>
+                   <?php if(count($atualizacoes) > 15): ?>
+                      <?= $pager->links() ?>
+                    <?php endif?>
                 </div>
               </div>
           </div>

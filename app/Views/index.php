@@ -53,12 +53,12 @@
             <div class="small-box navbar">
               <div class="inner">
                 <h3><?=$countPublicidades ?></h3>
-                <p>Publicidades</p>
+                <p>Anuncios</p>
               </div>
               <div class="icon">
                 <i class="fa fa-picture-o"></i>
               </div>
-              <a href="/publicidades" class="small-box-footer">Cadastrado no app</a>
+              <a href="/anuncios" class="small-box-footer">Cadastrado no app</a>
             </div>
           </div>
         <!-- ./col -->
@@ -82,7 +82,7 @@
         <div class="col-lg-8">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Usuários cadastrados</h3>
+              <h3 class="box-title">Últimos cadastros no aplicativo</h3>
             </div>
           <!-- /.box-header -->
             <div class="box-body table-responsive">
@@ -94,6 +94,7 @@
                         <th class="text-center">CPF</th>
                         <th class="text-center">Nome Completo</th>
                         <th class="text-center">Marca Veiculo</th>
+                        <th class="text-center">Tipo Veiculo</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Telefone</th>
                       </tr>
@@ -104,8 +105,9 @@
                             <td><?=$value['id']?></td>
                             <td><?=$value['empresa']?></td>
                             <td><?=$value['cpf']?></td>
-                            <td><?=$value['nomeCompleto']?></td>
-                            <td><?=$value['marcaVeiculo']?></td>
+                            <td><?=$value['nome']?></td>
+                            <td><?=$value['marca_veiculo']?></td>
+                            <td><?=$value['tipo_veiculo']?></td>
                             <td><?=$value['email']?></td>
                             <td><?=$value['telefone']?></td>
                         </tr>
@@ -136,7 +138,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="/publicidades" class="uppercase">Mais</a>
+              <a href="/anuncios" class="uppercase">Mais</a>
             </div>
             <!-- /.box-footer -->
           </div>

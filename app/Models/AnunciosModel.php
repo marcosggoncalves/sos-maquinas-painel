@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PublicidadesModel extends Model
+class AnunciosModel extends Model
 {
 	
 	protected $table = 'publicidades';
@@ -22,7 +22,7 @@ class PublicidadesModel extends Model
 
     public function getLimit($limit, $offset)
     {
-        return $this->findAll($limit, $offset);
+        return $this->orderBy('id', 'DESC')->findAll($limit, $offset);
     }
 
 	public function getAll()

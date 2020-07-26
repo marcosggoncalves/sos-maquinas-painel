@@ -31,6 +31,7 @@
                         <th class="text-center">CPF</th>
                         <th class="text-center">Nome Completo</th>
                         <th class="text-center">Marca Veiculo</th>
+                        <th class="text-center">Tipo Veiculo</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Telefone</th>
                       </tr>
@@ -41,14 +42,20 @@
                             <td><?=$value['id']?></td>
                             <td><?=$value['empresa']?></td>
                             <td><?=$value['cpf']?></td>
-                            <td><?=$value['nomeCompleto']?></td>
-                            <td><?=$value['marcaVeiculo']?></td>
+                            <td><?=$value['nome']?></td>
+                            <td><?=$value['marca_veiculo']?></td>
+                            <td><?=$value['tipo_veiculo']?></td>
                             <td><?=$value['email']?></td>
                             <td><?=$value['telefone']?></td>
                         </tr>
                        <?php endforeach?>
                     </tbody>
                 </table>
+                 <div> 
+                  <?php if(count($usuarios) > 15): ?>
+                    <?= $pager->links() ?>
+                  <?php endif?>
+                </div>
               </div>
           </div>
         </div>

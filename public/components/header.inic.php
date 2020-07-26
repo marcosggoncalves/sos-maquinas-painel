@@ -12,6 +12,7 @@
       <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="/">Painel Geral</a></li>
+          <li><a href="/usuarios">Usuários Aplicativo</a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">Cadastros <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -28,8 +29,8 @@
               </li>
               <li class="divider"></li>
               <li >
-                <a href="/publicidades">
-                  <i class="fa  fa-flag"></i> <span>Publicidades</span>
+                <a href="/anuncios">
+                  <i class="fa  fa-flag"></i> <span>Anuncios</span>
                 </a>
               </li>
               <li class="divider"></li>

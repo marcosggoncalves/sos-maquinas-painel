@@ -114,7 +114,9 @@
               </table>
 
               <div> 
-                <?= $pager->links() ?>
+                <?php if(count($itens) > 15): ?>
+                  <?= $pager->links() ?>
+                <?php endif?>
               </div>
             </div>
             <!-- Modal -->

@@ -63,10 +63,14 @@ class SicronizacaoModel extends Model
             ];
         }
 
-        $status = $this->db->table('atualizacoes')->set([
-            "realizado" =>  date("Y-m-d H:i:s"),
-            "status" => "Concluido"
-        ])->update();
+        $status = $this->db->table('atualizacoes')
+            ->set([
+                "realizado" =>  date("Y-m-d H:i:s"),
+                "status" => "Concluido"
+            ])
+            ->where('status =', 'Pendente')
+            ->orderBy('id', 'DESC')
+            ->update();
 
        return  [
             "status" => $status,

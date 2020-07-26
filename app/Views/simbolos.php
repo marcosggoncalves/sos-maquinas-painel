@@ -98,7 +98,9 @@
             </table>
 
             <div> 
-              <?= $pager->links() ?>
+              <?php if(count($simbolos) > 15): ?>
+                <?= $pager->links() ?>
+              <?php endif?>
             </div>
             
           </div>

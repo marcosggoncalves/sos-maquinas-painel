@@ -55,7 +55,7 @@ class Simbolos extends BaseController
 			'titulo' => "SOS Máquinas | " . $simbolo[0]['titulo'],
 			'simbolo' => $simbolo[0],
 			'categorias' => $this->categoriasModel->getAll(),
-			'itens' => $this->simbolosItemModel->paginate(15),
+			'itens' => $this->simbolosItemModel->orderBy('id',' desc')->paginate(15),
 			'pager' => $this->simbolosItemModel->pager
 		];
 
@@ -123,7 +123,7 @@ class Simbolos extends BaseController
 
 		$data = [
 			'status'=>false,
-			'message'=>'Não foi possivel excluir simbolo!',
+			'message'=>'Simbolo foi excluido com sucesso, porém não encontramos há imagem!'
 		];
 
 		if(empty($simbolo)){

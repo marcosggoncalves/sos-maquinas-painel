@@ -39,6 +39,7 @@ $routes->get('/simbolos/item-excluir/(:num)/(:num)', 'simbolos::itemExcluir/$1/$
 $routes->post('/simbolos/item-alterar/(:num)', 'simbolos::itemAlterar/$1');
 $routes->post('/simbolos/item-cadastrar/(:num)', 'simbolos::itemCadastrar/$1');
 
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

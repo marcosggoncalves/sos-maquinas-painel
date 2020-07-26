@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\UsuariosModel;
 use App\Models\UsuariosAdministradoresModel;
 use App\Models\CategoriasModel;
-use App\Models\PublicidadesModel;
+use App\Models\AnunciosModel;
 use App\Models\CategoriasSimbolosModel;
 
 
@@ -18,7 +18,7 @@ class Home extends BaseController
 
 		$this->usuariosModel = new UsuariosModel();
 		$this->usuariosAdminModel = new UsuariosAdministradoresModel();
-		$this->publicidadesModel = new PublicidadesModel();
+		$this->anunciosModel = new AnunciosModel();
 		$this->categoriasModel = new CategoriasModel();
 		$this->categoriasSimbolosModel = new CategoriasSimbolosModel();
 	}
@@ -31,9 +31,9 @@ class Home extends BaseController
 		$data = [
 			'titulo' => "SOS Máquinas | Painel",
 			'countUsuarios' => $this->usuariosModel->getCount(),
-			'usuarios' => $this->usuariosModel->getLimit(0,30),
-			'countPublicidades' => $this->publicidadesModel->getCount(),
-			'publicidades' => $this->publicidadesModel->getLimit(0,6),
+			'usuarios' => $this->usuariosModel->getLimit(0,10),
+			'countPublicidades' => $this->anunciosModel->getCount(),
+			'publicidades' => $this->anunciosModel->getLimit(0,6),
 			'countCategorias'=> $this->categoriasModel->getCount(),
 			'countSimbolos' => $this->categoriasSimbolosModel->getCount()
 		];

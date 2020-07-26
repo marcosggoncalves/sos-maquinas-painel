@@ -22,7 +22,7 @@ class Categorias extends BaseController
 
 		$data = [
 			'titulo' => 'SOS Máquinas | Categorias',
-			'categorias' => $this->categoriasModel->paginate(15),
+			'categorias' => $this->categoriasModel->orderBy('id',' desc')->paginate(15),
 			'pager' => $this->categoriasModel->pager
 		];
 
@@ -65,7 +65,6 @@ class Categorias extends BaseController
             ],
 		]);
 
-		
 		if(!$validate){
 			$data = [
 				'validate'=>$this->validator->listErrors(),
@@ -109,7 +108,7 @@ class Categorias extends BaseController
 
 		$data = [
 			'status'=>false,
-			'message'=>'Não foi possivel excluir categoria!'
+			'message'=>'Categoria foi excluida com sucesso, porém não encontramos há imagem!'
 		];
 
 		if(empty($categoria)){

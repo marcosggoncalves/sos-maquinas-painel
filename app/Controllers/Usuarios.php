@@ -17,9 +17,12 @@ class Usuarios extends BaseController
 
 	public function index()
 	{
+		$pager = \Config\Services::pager();
+
 		$data = [
 			'titulo' => 'SOS Máquinas | Usuários',
-			'usuarios' => $this->usuariosModel->getAll(),
+			'usuarios' => $this->usuariosModel->orderBy('id',' desc')->paginate(15),
+			'pager' => $this->usuariosModel->pager
 		];
 
 		return view('usuarios', $data);

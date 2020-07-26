@@ -23,7 +23,7 @@
             </div>
            
               <div class="box-body">
-                  <form role="form" action="/publicidades/cadastrar" method="post" enctype="multipart/form-data" >
+                  <form role="form" action="/anuncios/cadastrar" method="post" enctype="multipart/form-data" >
                   <div class="form-group">
                     <label for="cliente">Nome empresa/cliente:</label>
                     <input type="text" class="form-control" name="cliente" id="cliente" placeholder="Nome do cliente ou empresa">
@@ -75,8 +75,8 @@
                           </td>
                           <td>
                             <div class="row">
-                              <a class="btn btn-sm btn-success btn-raised " href="/publicidades/visualizar/<?=$value['id']?>" >Alterar</a>
-                              <a  onclick="confirmDialog('Excluir publicidade', 'Deseja excluir publicidade mesmo?','/publicidades/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
+                              <a class="btn btn-sm btn-success btn-raised " href="/anuncios/visualizar/<?=$value['id']?>" >Alterar</a>
+                              <a  onclick="confirmDialog('Excluir publicidade', 'Deseja excluir publicidade mesmo?','/anuncios/excluir/' + '<?=$value['id']?>')" class="btn btn-sm btn-danger btn-raised  btn-flat">Excluir</a>
                             </div>
                           </td>
                       </tr>
@@ -85,8 +85,10 @@
               </table>
 
               <div> 
+              <?php if(count($publicidades) > 15): ?>
                 <?= $pager->links() ?>
-              </div>
+              <?php endif?>
+            </div>
             </div>
             <!-- /.box-body -->
         </div>

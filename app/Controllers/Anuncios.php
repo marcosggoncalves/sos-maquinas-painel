@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Models\PublicidadesModel;
+use App\Models\AnunciosModel;
 use App\Models\SicronizacaoModel;
 
-class publicidades extends BaseController
+class Anuncios extends BaseController
 {
 	public function __construct()
     {
 		helper('url');
 		helper('form');
 
-		$this->publicidadesModel = new PublicidadesModel();
+		$this->anunciosModel = new anunciosModel();
 		$this->sicronizacaoModel  = new SicronizacaoModel();
 	}
 
@@ -21,17 +21,17 @@ class publicidades extends BaseController
 		$pager = \Config\Services::pager();
 
 		$data = [
-			'titulo' => 'SOS Máquinas | Publicidades',
-			'publicidades' => $this->publicidadesModel->paginate(15),
-			'pager' => $this->publicidadesModel->pager
+			'titulo' => 'SOS Máquinas | Anuncios',
+			'publicidades' => $this->anunciosModel->orderBy('id',' desc')->paginate(15),
+			'pager' => $this->anunciosModel->pager
 		];
 
-		return view('publicidades', $data);
+		return view('anuncios', $data);
 	}
 
 	public function visualizar($id)
 	{
-		$publicidade = $this->publicidadesModel->getPublicidadeEdit($id);
+		$publicidade = $this->anunciosModel->getPublicidadeEdit($id);
 
 		$data = [
 			'status'=>false,
@@ -40,7 +40,7 @@ class publicidades extends BaseController
 
 		if(empty($publicidade)){
 			$this->session->setFlashdata('save', $data);
-			return redirect()->to('/publicidades');
+			return redirect()->to('/anuncios');
 		}
 
 		$data = [
@@ -48,7 +48,7 @@ class publicidades extends BaseController
 			'publicidade' => $publicidade[0]
 		];
 
-		return view('publicidade', $data);
+		return view('anuncio', $data);
 	}
 
 	public function cadastrar()
@@ -76,7 +76,7 @@ class publicidades extends BaseController
 			];
 	
 			$this->session->setFlashdata('save', $data);
-			return redirect()->to('/publicidades');
+			return redirect()->to('/anuncios');
 		}else{
 			$Img = $this->request->getFile('imagem');
 			$newName = $Img->getRandomName();
@@ -94,7 +94,7 @@ class publicidades extends BaseController
 				'link' => $this->request->getVar('link'),
 			];
 
-			$save = $this->publicidadesModel->newPublicidade($publicidade);
+			$save = $this->anunciosModel->newPublicidade($publicidade);
 
 			if($save){
 				$data['message'] = "Publicidade cadastrada com sucesso!";
@@ -103,22 +103,22 @@ class publicidades extends BaseController
 
 			$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 			$this->session->setFlashdata('save', $data);
-			return redirect()->to('/publicidades');
+			return redirect()->to('/anuncios');
 		} 
 	}
 
 	public function excluir($id)
 	{
-		$publicidade = $this->publicidadesModel->getPublicidadeEdit($id);
+		$publicidade = $this->anunciosModel->getPublicidadeEdit($id);
 
 		$data = [
 			'status'=>false,
-			'message'=>'Não foi possivel excluir publicidade!'
+			'message'=>'Publicidade foi excluida com sucesso, porém não encontramos há imagem!'
 		];
 
 		if(empty($publicidade)){
 			$this->session->setFlashdata('save', $data);
-			return redirect()->to('/publicidades');
+			return redirect()->to('/anuncios');
 		}
 
 		if(file_exists($publicidade[0]['imagem'])){
@@ -130,15 +130,15 @@ class publicidades extends BaseController
 			}
 		}
 
-		$this->publicidadesModel->deletePublicidade($id);
+		$this->anunciosModel->deletePublicidade($id);
 		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
-		return redirect()->to('/publicidades');
+		return redirect()->to('/anuncios');
 	}
 
 	public function alterar($id)
 	{
-		$publicidade = $this->publicidadesModel->getPublicidadeEdit($id);
+		$publicidade = $this->anunciosModel->getPublicidadeEdit($id);
 
 		$validate = $this->validate([
 			'cliente'  => 'required',
@@ -154,7 +154,7 @@ class publicidades extends BaseController
 			];
 	
 			$this->session->setFlashdata('save', $data);
-			return redirect()->to('/publicidades/visualizar/' . $publicidade[0]['id']);
+			return redirect()->to('/anuncios/visualizar/' . $publicidade[0]['id']);
 		}
 
 		$publicidadeEdit = [
@@ -177,7 +177,7 @@ class publicidades extends BaseController
 		
 				if(!$excluirFile){
 					$this->session->setFlashdata('save', $data);
-					return redirect()->to('/publicidades');
+					return redirect()->to('/anuncios');
 				}
 			}
 
@@ -186,7 +186,7 @@ class publicidades extends BaseController
 			$publicidadeEdit['imagem'] =  'uploads/'.$publicidadeImagem->getName();
 		}
 
-		$savedit = $this->publicidadesModel->editPublicidade($id,$publicidadeEdit);
+		$savedit = $this->anunciosModel->editPublicidade($id,$publicidadeEdit);
 
 		if($savedit){
 			$data['message'] = "Publicidade alterada com sucesso!";
@@ -195,6 +195,6 @@ class publicidades extends BaseController
 		
 		$this->sicronizacaoModel->agendarAtualizacao($this->session->get('login')['user'][0]['id']);
 		$this->session->setFlashdata('save', $data);
-		return redirect()->to('/publicidades');
+		return redirect()->to('/anuncios');
 	}
 }

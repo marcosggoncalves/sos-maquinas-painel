@@ -17,7 +17,7 @@
           <div class="box box-primary">
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="/publicidades/alterar/<?=$publicidade['id'] ?>" method="post" enctype="multipart/form-data">
+            <form role="form" action="/anuncios/alterar/<?=$publicidade['id'] ?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="cliente">Nome empresa/cliente:</label>

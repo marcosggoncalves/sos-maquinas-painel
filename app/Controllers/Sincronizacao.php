@@ -18,9 +18,17 @@ class Sincronizacao extends BaseController
 	{
 		$pager = \Config\Services::pager();
 
+		$atualizacoes = $this->sicronizacaoModel
+							->select(
+								'atualizacoes.id , atualizacoes.atualizacao, usuarios_admin.email, atualizacoes.status, atualizacoes.realizado'
+							)
+							->join('usuarios_admin', 'atualizacoes.usuarios_admin_id = usuarios_admin.id')
+							->orderBy('atualizacoes.id',' desc')
+							->paginate(15);
+
 		$data = [
 			'titulo' => 'SOS Máquinas | Atualizações de dados aplicativo',
-			'atualizacoes' => $this->sicronizacaoModel->join('usuarios_admin', 'atualizacoes.usuarios_admin_id = usuarios_admin.id')->paginate(20),
+			'atualizacoes' => $atualizacoes,
             'pager' => $this->sicronizacaoModel->pager
 		];
 
