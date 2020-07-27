@@ -70,7 +70,7 @@ class Simbolos extends BaseController
 			'titulo' => "SOS Máquinas | " . $simbolo[0]['titulo'],
 			'simbolo' => $simbolo[0],
 			'categorias' => $this->categoriasModel->getAll(),
-			'itens' => $this->simbolosItemModel->getAll()
+			'itens' => $this->simbolosItemModel->getFilter($simbolo[0]['id'])
 		];
 
 		return view('simbolo', $data);

@@ -20,6 +20,11 @@ class SimbolosItemsModel extends Model
         return $this->findAll();
     }
 
+    public function getFilter($id)
+    {
+        return $this->where('categoria_simbolo_id =', $id)->findAll();
+    }
+
 	public function newSimboloItem($simbolo)
     {
         return $this->save($simbolo);
