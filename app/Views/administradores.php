@@ -48,6 +48,7 @@
                     <th class="text-center">ID</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Opções</th>
+                    <th class="text-center">Último acesso</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,11 @@
                      <tr class="text-center">
                         <td><?=$value['id']?></td>
                         <td><?=$value['email']?></td>
+                        <td>
+                          <?php if(!empty($value['ultimo_acesso'])): ?>
+                            <span class="label label-success"><?=date_format(date_create($value['ultimo_acesso']), "d/m/Y H:i:s")?></span>
+                          <?php endif; ?>
+                        </td>
                         <td>
                           <div class="row">
                             <a class="btn btn-sm btn-success btn-raised " href="/administradores/visualizar/<?=$value['id']?>" >Alterar</a>

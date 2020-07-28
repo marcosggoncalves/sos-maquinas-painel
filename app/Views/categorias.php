@@ -83,9 +83,7 @@
             </table>
             
             <div> 
-              <?php if(count($categorias) > 15): ?>
-                <?= $pager->links() ?>
-              <?php endif?>
+              <?= $pager->links() ?>
             </div>
           </div>
           <!-- /.box-body -->

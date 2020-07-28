@@ -10,7 +10,8 @@ class UsuariosAdministradoresModel extends Model
 	
 	protected $allowedFields = [
 		"email",
-		"senha"
+		"senha",
+        "ultimo_acesso"
 	];
 	
 	public function getCount()
@@ -20,7 +21,7 @@ class UsuariosAdministradoresModel extends Model
 
 	public function getAll()
 	{
-		return $this->findAll();
+		return $this->orderBy('id','desc')->findAll();
 	}
 
 	public function newUsuario($usuario)
@@ -65,12 +66,14 @@ class UsuariosAdministradoresModel extends Model
         return $this->findAll();
     }
 
-    public function getAtualizacoes()
+    public function ultimoAcesso($id)
     {
-        return $this->db->table('atualizacoes')
-            ->join('usuarios_admin', 'atualizacoes.usuarios_admin_id = usuarios_admin.id')
-            ->get()
-            ->getResult('array'); 
+        $this->db->table('usuarios_admin')
+            ->set([
+                "ultimo_acesso " =>  date("Y-m-d H:i:s")
+            ])
+            ->where('id =', $id)
+            ->update();
     }
 
     public function atualizacao()

@@ -39,8 +39,8 @@ class Filters extends BaseConfig
 				'/simbolos*',
 				'/administradores*',
 				'/categorias*',
-				'/publicidades*',
-				'/usuarios*'
+				'/anuncios*',
+				'/usuarios*',
 			]
 		],
 	];

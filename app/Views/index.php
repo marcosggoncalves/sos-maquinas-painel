@@ -91,12 +91,9 @@
                       <tr>
                         <th class="text-center">ID</th>
                         <th class="text-center">Empresa</th>
-                        <th class="text-center">CPF</th>
-                        <th class="text-center">Nome Completo</th>
-                        <th class="text-center">Marca Veiculo</th>
+                        <th class="text-center">Nome Completo</th>>
                         <th class="text-center">Tipo Veiculo</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">Telefone</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -104,16 +101,16 @@
                          <tr class="text-center">
                             <td><?=$value['id']?></td>
                             <td><?=$value['empresa']?></td>
-                            <td><?=$value['cpf']?></td>
                             <td><?=$value['nome']?></td>
-                            <td><?=$value['marca_veiculo']?></td>
                             <td><?=$value['tipo_veiculo']?></td>
                             <td><?=$value['email']?></td>
-                            <td><?=$value['telefone']?></td>
                         </tr>
                        <?php endforeach?>
                     </tbody>
                 </table>
+              </div>
+              <div class="box-footer text-center">
+                <a href="/usuarios" class="uppercase">Ver Mais</a>
               </div>
           </div>
         </div>
@@ -138,7 +135,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="/anuncios" class="uppercase">Mais</a>
+              <a href="/anuncios" class="uppercase">Ver Mais</a>
             </div>
             <!-- /.box-footer -->
           </div>

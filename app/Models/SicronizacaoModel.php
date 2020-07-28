@@ -35,7 +35,7 @@ class SicronizacaoModel extends Model
     public function agendarAtualizacao($cadastroID)
     {
         $verifySincronizacao = $this->db->table('atualizacoes')
-                                ->where('atualizacao >=', date("Y-m-d H:i:s"))
+                                ->where('atualizacao >', date("Y-m-d H:i:s"))
                                 ->where('status =', 'Pendente')
                                 ->orderBy('id', 'DESC')
                                 ->get()
@@ -63,7 +63,8 @@ class SicronizacaoModel extends Model
             ];
         }
 
-        $status = $this->db->table('atualizacoes')
+        if(date("Y-m-d H:i:s") >= $verifySincronizacao[0]->atualizacao){
+            $status = $this->db->table('atualizacoes')
             ->set([
                 "realizado" =>  date("Y-m-d H:i:s"),
                 "status" => "Concluido"
@@ -72,9 +73,15 @@ class SicronizacaoModel extends Model
             ->orderBy('id', 'DESC')
             ->update();
 
-       return  [
-            "status" => $status,
-            "message" => $status ? 'Sincronização realizada com sucesso!': 'Não foi possivel realizar sincronização, tente novamente !'
+            return  [
+                "status" => $status,
+                "message" => $status ? 'Sincronização realizada com sucesso!': 'Não foi possivel realizar sincronização, tente novamente !'
+            ];
+        }
+        
+        return  [
+            "status" => true,
+            "message" => "Sincronização realizada com sucesso!"
         ];
     }
 }

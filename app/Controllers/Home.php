@@ -45,7 +45,7 @@ class Home extends BaseController
 
 		if($atualizacao['pendente'] === 1){
 			$data['status'] = true;
-			$data['message'] = "Sincronização criada em " . date_format(date_create($atualizacao['atualizacao'][0]->atualizacao), 'd/m/Y H:i:s') . " foi encontrada, em breve sincronização será feita."; 
+			$data['message'] = "Sincronização criada em " . date_format(date_create($atualizacao['atualizacao'][0]->atualizacao), 'd/m/Y H:i:s') . " foi encontrada."; 
 		}
 
 		return view('index', $data);
@@ -89,6 +89,8 @@ class Home extends BaseController
 			];
 		
 			$entrar = $this->usuariosAdminModel->logar($find);
+
+			$this->usuariosAdminModel->ultimoAcesso($entrar[0]['id']);
 
 			if(count($entrar) === 0){
 				$this->session->setFlashdata('save', $data);

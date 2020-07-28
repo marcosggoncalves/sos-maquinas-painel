@@ -51,10 +51,8 @@
                        <?php endforeach?>
                     </tbody>
                 </table>
-                 <div> 
-                  <?php if(count($usuarios) > 15): ?>
-                    <?= $pager->links() ?>
-                  <?php endif?>
+                <div> 
+                  <?= $pager->links() ?>
                 </div>
               </div>
           </div>

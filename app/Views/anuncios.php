@@ -85,10 +85,8 @@
               </table>
 
               <div> 
-              <?php if(count($publicidades) > 15): ?>
                 <?= $pager->links() ?>
-              <?php endif?>
-            </div>
+              </div>
             </div>
             <!-- /.box-body -->
         </div>

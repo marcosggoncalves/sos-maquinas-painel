@@ -3,7 +3,8 @@ create database sosmaquinas;
 create table usuarios_admin(
 	id int not null primary key auto_increment,
 	email varchar(80) not null,
-	senha varchar(40) not null 
+	senha varchar(40) not null,
+	ultimo_acesso datetime not null
 );
 
 create table usuarios(
