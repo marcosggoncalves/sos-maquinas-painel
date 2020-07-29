@@ -47,8 +47,8 @@
                   <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">Email</th>
-                    <th class="text-center">Opções</th>
                     <th class="text-center">Último acesso</th>
+                    <th class="text-center">Opções</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,7 +57,7 @@
                         <td><?=$value['id']?></td>
                         <td><?=$value['email']?></td>
                         <td>
-                          <?php if(!empty($value['ultimo_acesso'])): ?>
+                          <?php if (!empty($value['ultimo_acesso'])): ?>
                             <span class="label label-success"><?=date_format(date_create($value['ultimo_acesso']), "d/m/Y H:i:s")?></span>
                           <?php endif; ?>
                         </td>
