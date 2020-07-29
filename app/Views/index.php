@@ -139,7 +139,12 @@
             </div>
             <!-- /.box-footer -->
           </div>
-
+		  <div>
+		    <div class="alert alert-info alert-dismissible">
+			<h4><i class="icon fa fa-cloud-download"></i>Versão teste aplicativo</h4>
+			   Versão para teste: <a href="public/app-v1.apk">baixar</a>
+		     </div>
+		    </div>
           <div>
             <?php if(isset($status) && !$status): ?>
               <div class="alert alert-danger alert-dismissible">
