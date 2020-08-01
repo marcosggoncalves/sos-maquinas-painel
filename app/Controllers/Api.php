@@ -29,10 +29,10 @@ class Api extends ResourceController
 	{
 		$data = [
 			'success' => true,
-			'publicidades' => $this->anunciosModel->getAll(),
-			'categorias' => $this->categoriasModel->getAll(),
-			'simbolos' => $this->categoriasSimbolosModel->getAll()->get()->getResult(),
-			'simbolosItens' => $this->simbolosItemModel->getAll()
+			'publicidades' => $this->anunciosModel->getSQLInserts(),
+			'categorias' => $this->categoriasModel->getSQLInserts(),
+			'simbolos' => $this->categoriasSimbolosModel->getSQLInserts(),
+			'simbolosItens' => $this->simbolosItemModel->getSQLInserts()
 		];
 
 		 return $this->respond($data, 200);

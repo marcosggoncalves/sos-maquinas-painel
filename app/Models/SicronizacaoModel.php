@@ -63,7 +63,7 @@ class SicronizacaoModel extends Model
             ];
         }
 
-        if(date("Y-m-d H:i:s") >= $verifySincronizacao[0]->atualizacao){
+        if(date("Y-m-d H:i:s") > $verifySincronizacao[0]->atualizacao){
             $status = $this->db->table('atualizacoes')
             ->set([
                 "realizado" =>  date("Y-m-d H:i:s"),

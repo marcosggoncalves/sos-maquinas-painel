@@ -50,5 +50,18 @@ class AnunciosModel extends Model
     {
        return $this->where('id',$id)->set($data)->update();
     }
+
+    public function getSQLInserts()
+    {
+        $anuncios = $this->findAll();
+
+        $sqls = [];
+
+        foreach ($anuncios as $key => $anuncio) {
+            $sqls[] = "INSERT INTO publicidades VALUES ({$anuncio['id']},'{$anuncio['imagem']}','{$anuncio['link']}','{$anuncio['cliente']}',{$anuncio['duracao']})";
+        }
+
+        return $sqls;
+    }
 }
 

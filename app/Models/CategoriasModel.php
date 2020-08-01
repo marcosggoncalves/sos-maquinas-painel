@@ -40,5 +40,20 @@ class CategoriasModel extends Model
     {
        return $this->where('id',$id)->set($data)->update();
     }
+    public function getSQLInserts()
+    {
+        $categorias = $this->findAll();
+
+        $sqls = [
+            'delete from categorias'
+        ];
+
+        foreach ($categorias as $key => $categoria) {
+
+            $sqls[] = trim("INSERT INTO categorias VALUES ({$categoria['id']},'{$categoria['categoria']}','{$categoria['imagem']}')");
+        }
+
+        return $sqls;
+    }
 }
 

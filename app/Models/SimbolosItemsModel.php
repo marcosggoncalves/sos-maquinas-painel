@@ -45,5 +45,18 @@ class SimbolosItemsModel extends Model
     {
        return $this->where('id',$id)->set($data)->update();
     }
+
+    public function getSQLInserts()
+    {
+        $itensSimbolos = $this->findAll();
+
+        $sqls = [];
+
+        foreach ($itensSimbolos as $key => $item) {
+            $sqls[] = trim("INSERT INTO simbolos_items VALUES ({$item['id']},'{$item['descricao']}','{$item['tipo']}',{$item['categoria_simbolo_id']})");
+        }
+
+        return $sqls;
+    }
 }
 
