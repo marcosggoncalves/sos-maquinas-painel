@@ -32,6 +32,11 @@ class UsuariosModel extends Model
 		return $this->findAll();
 	}
 
+	public function get($id)
+	{
+		return $this->where('id =',$id)->first();
+	}
+
 	public function logar($find)
     {
         $this->where($find);

@@ -72,7 +72,7 @@ class Api extends ResourceController
 			
 			$data = [
 				'status'=>true,
-				'message'=>'Login efetuado com sucesso!',
+	 			'message'=>'Login efetuado com sucesso!',
 				'usuario' => $entrar[0]
 			];
 
@@ -174,7 +174,8 @@ class Api extends ResourceController
 			if($save){
 				$data = [
 					'status'=>true,
-					'message'=>'Cadastro efetuado com sucesso!'
+					'message'=>'Cadastro alterado com sucesso!',
+					'usuario' => $this->usuariosModel->get($id)
 				];
 			}else{
 				$data = [

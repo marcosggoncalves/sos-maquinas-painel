@@ -44,9 +44,7 @@ class CategoriasModel extends Model
     {
         $categorias = $this->findAll();
 
-        $sqls = [
-            'delete from categorias'
-        ];
+        $sqls = [];
 
         foreach ($categorias as $key => $categoria) {
 
