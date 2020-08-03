@@ -62,8 +62,8 @@ class SicronizacaoModel extends Model
                 "message" => "Não há atualizações no momento!"
             ];
         }
-
-        if(date("Y-m-d H:i:s") > $verifySincronizacao[0]->atualizacao){
+        
+        if(date_format(date_create($verifySincronizacao[0]->atualizacao), "Y-m-d") < date("Y-m-d")){
             $status = $this->db->table('atualizacoes')
             ->set([
                 "realizado" =>  date("Y-m-d H:i:s"),
