@@ -1,5 +1,7 @@
 create database sosmaquinas;
 
+use sosmaquinas;
+
 create table usuarios_admin(
 	id int not null primary key auto_increment,
 	email varchar(80) not null,
@@ -60,3 +62,6 @@ create table atualizacoes(
 	PRIMARY KEY (id),
 	FOREIGN KEY (usuarios_admin_id) REFERENCES usuarios_admin(id) ON DELETE CASCADE
 );
+
+INSERT INTO `usuarios_admin` (`id`, `email`, `senha`, `ultimo_acesso`) VALUES
+(1, 'marcos.ggoncalves.pr@gmail.com', 'f3670239abb1787232f3ec107ec647f4', '2025-08-27 01:12:31');
